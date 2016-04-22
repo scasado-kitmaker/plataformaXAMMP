@@ -9,6 +9,7 @@ class plataforma extends CI_Controller {
         date_default_timezone_set('Europe/Madrid');
          $this->load->helper('url');
         $this->load->helper('form');
+        $this->load->model('plataforma_model');
 
        // $this->load->model('plataforma_model');    
         //$this->output->enable_profiler(TRUE);        
@@ -37,20 +38,8 @@ class plataforma extends CI_Controller {
 	{
 		$this->load->view('about.php');
 	}
-	public function login()
-	{	
-
-		$this->load->view('login.php');
-	}
-	 public function logout()
-    {
-        $this->authentication->logout();
-
-        // Set redirect protocol
-        $redirect_protocol = USE_SSL ? 'https' : NULL;
-
-        redirect( site_url( LOGIN_PAGE . '?logout=1', $redirect_protocol ) );
-    }
+	
+	 
 
 
 }
