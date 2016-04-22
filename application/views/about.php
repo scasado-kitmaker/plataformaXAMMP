@@ -11,7 +11,7 @@
 	<?php include('menu.php');?>
 	<div class="show_entries">
 
-	<p>Ladrillo explicando un poco todo</p>		
+	<p>Ladrillo  grande explicando un poco todo</p>		
 	</div>
 </body>
 </html>
