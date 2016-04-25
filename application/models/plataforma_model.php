@@ -37,5 +37,20 @@ class Plataforma_model extends CI_Model
 		$this->db->where('telefono', $id_telefono);
 		return $this->db->update('usuario', $data);
 	}
+	public function updateEstado($id_telefono,$data)
+	{
+		$this->db->where('telefono', $id_telefono);
+		return $this->db->update('usuario', $data);
+	}
+	public function getEstado($id_telefono)
+	{
+		$this->db->where('telefono', $id_telefono);
+		return $this->db->get('usuario')->result();
+	}
+	public function getSaldo($id_telefono)
+	{
+		$this->db->where('telefono', $id_telefono);
+		return $this->db->get('usuario')->result();
+	}
 }
 ?>

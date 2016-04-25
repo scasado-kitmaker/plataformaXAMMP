@@ -1,0 +1,5 @@
+@font-face {
+  font-family: fuentePrincipal;
+  src: url('http://localhost/blog/public/assets/fonts/calibri.ttf');
+  /* Importa la fuente que usaremos en el blog */
+}

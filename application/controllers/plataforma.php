@@ -15,8 +15,11 @@ class plataforma extends CI_Controller {
         //$this->output->enable_profiler(TRUE);        
 	}
 	public function index()
-	{
-		$this->load->view('menu.php');//Cambiar por login.php
+	{	
+		$id_telefono = $this->session->userdata('username');
+		$data['estado'] = $this->plataforma_model->getEstado($id_telefono); 
+		$data['saldo'] = $this->plataforma_model->getSaldo($id_telefono); 
+		$this->load->view('menu.php',$data);//Cambiar por login.php
 	}
 	public function alta()
 	{
@@ -40,6 +43,7 @@ class plataforma extends CI_Controller {
 	}
 	public function insert_servicio()
 	{
+		$id_telefono = $this->session->userdata('username');
 		$this->load->library('form_validation');
 		if($this->form_validation->run()===FALSE)
 		{
@@ -47,7 +51,16 @@ class plataforma extends CI_Controller {
 			$servicio=array(
 				'telefono'=>$this->input->post('telefono'),
 				);
+			$test=array(
+				'estado_alta'=>'1',
+				);
+			$log=array(
+				'id_user'=>$this->input->post('telefono'),
+				'date' => date('Y-m-d H:i:s'),
+			);
 			$this->plataforma_model->insert('servicio1',$servicio);
+			$this->plataforma_model->insert('altaslogs',$log);
+			$this->plataforma_model->updateEstado($id_telefono, $test);
 			redirect(base_url());
 		}
 		{
@@ -56,23 +69,33 @@ class plataforma extends CI_Controller {
 
 	}
 	public function delete_servicio()
-	{
+	{	
+		$log=array(
+			'id_user'=>$this->session->userdata('username'),
+			'date' => date('Y-m-d H:i:s'),
+			);
+		
+		$test=array(
+			'estado_alta'=>'0',
+			);
 		$id_telefono = $this->session->userdata('username');
 
 		$this->plataforma_model->deleteService($id_telefono);
-
+		$this->plataforma_model->updateEstado($id_telefono, $test);
+		$this->plataforma_model->insert('bajaslogs',$log);
 		redirect(base_url());
 	}
 	public function update_saldo()
 	{
 		$id_telefono = $this->session->userdata('username');
-    	$saldo = array(
-        'saldo'     => $this->input->post('quantity'),       
-        );
+		$saldo = array(
+			'saldo'     => $this->input->post('quantity'),       
+			);
 
-    $this->plataforma_model->updateSaldo($id_telefono, $saldo);
 
-    redirect(base_url());
+		$this->plataforma_model->updateSaldo($id_telefono, $saldo);
+
+		redirect(base_url());
 
 	}
 

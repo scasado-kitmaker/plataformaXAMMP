@@ -11,6 +11,10 @@ class Users_model extends CI_Model
 		$this->db->where('telefono', $username);
 		$this->db->where('password', $password);
 		return $this->db->get('usuario')->row();
+	}
+	public function insert($table,$data)
+	{
+		return $this->db->insert($table , $data);
 	}	
 	
 }

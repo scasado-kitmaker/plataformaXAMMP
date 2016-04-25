@@ -4,7 +4,7 @@
 	<meta charset="utf-8">       
 	<!--Estilos-->
 	<link href='http://localhost/blog/public/assets/css/style.css' rel='stylesheet' type='text/css' />
-		<!--Scripts-->
+	<!--Scripts-->
 	<script src="http://localhost/plataforma/public/assets/js/toastr.js"></script>	
 	<script type="text/javascript" src="http://localhost/plataforma/public/assets/js/moment.js"></script>
 	<script type="text/javascript" src="http://localhost/plataforma/public/assets/js/jquery.cookiebar.js"></script> 
@@ -23,8 +23,9 @@
 	<!--Menu principal y codigo para resaltar el boton de la página donde estamos-->
 	<div class="show_entries">
 		<div class="menuBotones"> 
+
 			<ul>
-			<?php
+				<?php
 				$actual_link = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
 				$varVerde1=' ';
 				$varVerde2=' ';
@@ -75,12 +76,40 @@
 					?>
 				</li>
 
-				<li>					
+				<!--Si se esta dado de alta en el servicio-->
+				<li>	
+				
+				<?php $resultado= $saldo;?>
+				<?php echo $resultado?>
+
+					<?php if ($saldo > '0') : ?>
+
+						<?php echo anchor(base_url().'index.php/plataforma/alta/',' Alta1 ','class="'.$varVerde2.'"');?>
+					<?php else : ?>
+						<?php echo anchor(base_url().'index.php/plataforma/aviso_saldo/',' Alta2 ','class="'.$varVerde2.'"');?>
+					<?php endif; ?>
+
+					<?php 
+
+					//if($saldo->saldo>0)
+					//{
+						
+					//}
+					//else
+					//{
+						
+					//}
+					?>
+					<!--Si se tiene saldo-->					
 					<?php
-					echo anchor(base_url().'index.php/plataforma/alta/',' Alta ','class="'.$varVerde2.'"');
+					//echo anchor(base_url().'index.php/plataforma/alta/',' Alta ','class="'.$varVerde2.'"');
+					?>
+					<!--Si no se tiene saldo-->
+					<?php
+					//echo anchor(base_url().'index.php/plataforma/aviso_saldo/',' Alta ','class="'.$varVerde2.'"');
 					?>
 				</li>
-
+				<!--Si NO se esta dado de alta en el servicio-->
 				<li>
 					<?php
 					echo anchor(base_url().'index.php/plataforma/baja/',' Baja ','class="'.$varVerde3.'"');

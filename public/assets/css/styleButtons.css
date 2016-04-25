@@ -1,0 +1,113 @@
+@font-face {
+  font-family: fuentePrincipal;
+  src: url('http://localhost/blog/public/assets/fonts/calibri.ttf');
+  /* Importa la fuente que usaremos en el blog */
+}
+
+.btnLogin {
+  /* Da un formato a los botones que estan presentes en el menu superiro */
+  background: #3498db;
+  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+  background-image: -o-linear-gradient(top, #3498db, #2980b9);
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  font-family: Arial;
+  color: #ffffff;
+  position: relative;
+  padding-bottom: 10px;
+  padding-top: 10px 
+  font-size: 20px;
+  text-decoration: none; 
+}
+
+.btnLogin:hover {
+  /* Da un formato a los botones que estan presentes en el menu superior cuando se
+  pasa el raton por encima de estos para resaltar el botón que se esta seleccionado */
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}
+
+.btnMostrar {
+  /* Da un formato a los botones que estan presentes en el menu superiro */
+  background: #3498db;
+  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+  background-image: -o-linear-gradient(top, #3498db, #2980b9);
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  font-family: Arial;
+  color: #ffffff;
+  position: relative;
+  padding-bottom: 10px;
+  padding-top: 10px
+  padding-bottom: 10px;
+  padding-top: 10px
+  font-size: 20px;
+  text-decoration: none; 
+}
+
+.btnMostrar:hover {
+  /* Da un formato a los botones que estan presentes en el menu superior cuando se
+  pasa el raton por encima de estos para resaltar el botón que se esta seleccionado */
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}
+
+.button1Datatables{
+ width: 100%;
+  background-color: #333;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  font-family: fuentePrincipal;
+  font-size: 20px;
+}
+
+.button1Datatables:hover:not(.active) {
+  background-color: #111;
+}
+
+.btnNuevaEntrada {
+  /* Da un formato a los botones que estan presentes en el menu superiro */
+
+  background: #3498db;
+  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+  background-image: -o-linear-gradient(top, #3498db, #2980b9);
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  font-family: Arial;
+  color: #ffffff;
+  position: relative;  
+  padding-bottom: 10px;
+  padding-top: 10px
+  font-size: 20px;
+  text-decoration: none;   
+}
+
+.btnNuevaEntrada:hover {
+  /* Da un formato a los botones que estan presentes en el menu superior cuando se
+  pasa el raton por encima de estos para resaltar el botón que se esta seleccionado */
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+  padding-bottom: 10px;
+  padding-top: 10px
+}
