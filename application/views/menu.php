@@ -24,6 +24,36 @@
 	<div class="show_entries">
 		<div class="menuBotones"> 
 
+			<?php if (!empty($saldo)) : ?>
+				<?php foreach($saldo as $saldof) : ?>
+					<?php $saldoz = $saldof->saldo ?>
+					
+				<?php endforeach; ?>
+				<!-- If there is no info -->
+			<?php else : ?>
+				<h1>No hay información</h1>
+			<?php endif; ?>
+
+			<?php if (!empty($estado)) : ?>
+				<?php foreach($saldo as $estadof) : ?>
+					<?php $estadoz = $estadof->estado_alta?>
+					
+				<?php endforeach; ?>
+				<!-- If there is no info -->
+			<?php else : ?>
+				<h1>No hay información</h1>
+			<?php endif; ?>
+
+
+
+
+			<?php
+			echo $saldoz;
+			echo $estadoz;
+			
+			?>
+
+
 			<ul>
 				<?php
 				$actual_link = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
@@ -77,45 +107,29 @@
 				</li>
 
 				<!--Si se esta dado de alta en el servicio-->
-				<li>	
-				
-				<?php $resultado= $saldo;?>
-				<?php echo $resultado?>
+				<?php if ($estadoz ==0) : ?>
+					
+				<li>				
 
-					<?php if ($saldo > '0') : ?>
+					<!--Si tiene saldo-->
 
-						<?php echo anchor(base_url().'index.php/plataforma/alta/',' Alta1 ','class="'.$varVerde2.'"');?>
+					<?php if ($saldoz >0) : ?>
+
+						<?php echo anchor(base_url().'index.php/plataforma/alta/',' Alta ','class="'.$varVerde2.'"');?>
+						<!--Si NO tiene saldo-->
 					<?php else : ?>
-						<?php echo anchor(base_url().'index.php/plataforma/aviso_saldo/',' Alta2 ','class="'.$varVerde2.'"');?>
-					<?php endif; ?>
-
-					<?php 
-
-					//if($saldo->saldo>0)
-					//{
-						
-					//}
-					//else
-					//{
-						
-					//}
-					?>
-					<!--Si se tiene saldo-->					
-					<?php
-					//echo anchor(base_url().'index.php/plataforma/alta/',' Alta ','class="'.$varVerde2.'"');
-					?>
-					<!--Si no se tiene saldo-->
-					<?php
-					//echo anchor(base_url().'index.php/plataforma/aviso_saldo/',' Alta ','class="'.$varVerde2.'"');
-					?>
+						<?php echo anchor(base_url().'index.php/plataforma/aviso_saldo/',' Alta ','class="'.$varVerde2.'"');?>
+					<?php endif; ?>		
+					
 				</li>
 				<!--Si NO se esta dado de alta en el servicio-->
+				<?php else : ?>
 				<li>
 					<?php
 					echo anchor(base_url().'index.php/plataforma/baja/',' Baja ','class="'.$varVerde3.'"');
 					?>
 				</li>
-
+				<?php endif; ?>	
 				<li>
 					<?php
 					echo anchor(base_url().'index.php/plataforma/about/',' About ','class="'.$varVerde4.'"');
@@ -138,5 +152,4 @@
 		</div>
 		<hr class="style13"/>
 	</div>
-</body>
 </body>
