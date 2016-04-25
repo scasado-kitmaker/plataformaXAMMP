@@ -44,16 +44,6 @@
 				<h1>No hay información</h1>
 			<?php endif; ?>
 
-
-
-
-			<?php
-			echo $saldoz;
-			echo $estadoz;
-			
-			?>
-
-
 			<ul>
 				<?php
 				$actual_link = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
@@ -109,26 +99,26 @@
 				<!--Si se esta dado de alta en el servicio-->
 				<?php if ($estadoz ==0) : ?>
 					
-				<li>				
+					<li>				
 
-					<!--Si tiene saldo-->
+						<!--Si tiene saldo-->
 
-					<?php if ($saldoz >0) : ?>
+						<?php if ($saldoz >0) : ?>
 
-						<?php echo anchor(base_url().'index.php/plataforma/alta/',' Alta ','class="'.$varVerde2.'"');?>
-						<!--Si NO tiene saldo-->
-					<?php else : ?>
-						<?php echo anchor(base_url().'index.php/plataforma/aviso_saldo/',' Alta ','class="'.$varVerde2.'"');?>
-					<?php endif; ?>		
-					
-				</li>
-				<!--Si NO se esta dado de alta en el servicio-->
+							<?php echo anchor(base_url().'index.php/plataforma/alta/',' Alta ','class="'.$varVerde2.'"');?>
+							<!--Si NO tiene saldo-->
+						<?php else : ?>
+							<?php echo anchor(base_url().'index.php/plataforma/aviso_saldo/',' Alta ','class="'.$varVerde2.'"');?>
+						<?php endif; ?>		
+						
+					</li>
+					<!--Si NO se esta dado de alta en el servicio-->
 				<?php else : ?>
-				<li>
-					<?php
-					echo anchor(base_url().'index.php/plataforma/baja/',' Baja ','class="'.$varVerde3.'"');
-					?>
-				</li>
+					<li>
+						<?php
+						echo anchor(base_url().'index.php/plataforma/baja/',' Baja ','class="'.$varVerde3.'"');
+						?>
+					</li>
 				<?php endif; ?>	
 				<li>
 					<?php

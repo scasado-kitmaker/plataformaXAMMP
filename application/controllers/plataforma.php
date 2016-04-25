@@ -21,24 +21,38 @@ class plataforma extends CI_Controller {
 	}
 	public function alta()
 	{
-		
-		$this->load->view('alta.php');
+		$id_telefono = $this->session->userdata('username');
+		$data['estado'] = $this->plataforma_model->getEstado($id_telefono); 
+		$data['saldo'] = $this->plataforma_model->getSaldo($id_telefono); 
+		$this->load->view('alta.php',$data);
 	}
 	public function baja()
 	{
-		$this->load->view('baja.php');
+		$id_telefono = $this->session->userdata('username');
+		$data['estado'] = $this->plataforma_model->getEstado($id_telefono); 
+		$data['saldo'] = $this->plataforma_model->getSaldo($id_telefono); 
+		$this->load->view('baja.php',$data);
 	}
 	public function aviso_saldo()
 	{
-		$this->load->view('aviso_saldo.php');
+		$id_telefono = $this->session->userdata('username');
+		$data['estado'] = $this->plataforma_model->getEstado($id_telefono); 
+		$data['saldo'] = $this->plataforma_model->getSaldo($id_telefono); 
+		$this->load->view('aviso_saldo.php',$data);
 	}
 	public function logs()
 	{
-		$this->load->view('logs.php');
+		$id_telefono = $this->session->userdata('username');
+		$data['estado'] = $this->plataforma_model->getEstado($id_telefono); 
+		$data['saldo'] = $this->plataforma_model->getSaldo($id_telefono); 
+		$this->load->view('logs.php',$data);
 	}
 	public function about()
-	{
-		$this->load->view('about.php');
+	{	
+		$id_telefono = $this->session->userdata('username');
+		$data['estado'] = $this->plataforma_model->getEstado($id_telefono); 
+		$data['saldo'] = $this->plataforma_model->getSaldo($id_telefono); 
+		$this->load->view('about.php',$data);
 	}
 	public function insert_servicio()
 	{
