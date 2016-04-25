@@ -13,16 +13,17 @@
 	<!--Formulario para ingresar dinero en la cuenta-->
 	<div class="show_entries" >		
 		<p>Necesitas $$$, ingresa $$$, el ingreso minimo es de 5 $</p>
-		<?=form_open(base_url().'index.php/plataforma/alta/')?>
+		<?=form_open(base_url().'index.php/plataforma/update_saldo/')?>
 		<p>Cantidad:</p>
-		<input type="radio" name="quantity">5$
-		<input type="radio" name="quantity">10$
-		<input type="radio" name="quantity">20$
-		<input type="number" name="quantity" min="5" max="50000000000" placeholder="custom ammount">$
+		<input type="number"  required name="quantity" min="5" max="500" placeholder="custom ammount">$
 		<p>Texto legal:</p>
-		<p><?=form_textarea('content','Texto legal to complicado shur','readonly')?></p>	
-		<input type="checkbox" name="checkAlta"> He leido y acepto la condiciones<br>
-		<?=form_submit('submit', 'Ingresar dinero')?>
-	</div>	
-</body>
-</html>
+		<p><?=form_textarea('content','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla pulvinar rutrum magna eu hendrerit. Etiam quis justo porta, dapibus mauris eget, iaculis est. Proin in lorem posuere, lacinia lacus non, ultricies elit. Donec iaculis venenatis mi, at sodales libero venenatis sed. Sed dui tortor, volutpat sit amet tristique ut, ullamcorper egestas lectus. In eget felis diam. Nam sit amet efficitur ex. Ut sollicitudin euismod commodo.
+
+			Nunc quis arcu mauris. Donec sit amet purus quis velit tristique cursus egestas sed eros. Fusce dictum placerat mi, nec volutpat nulla posuere vel. Nulla facilisi. Curabitur congue dui at felis facilisis, sed commodo enim faucibus. Pellentesque suscipit posuere eros ut rutrum. Sed semper egestas metus, eu iaculis arcu placerat vitae. Vivamus finibus vulputate ex, nec eleifend est vehicula a. Quisque malesuada posuere tellus nec varius. Morbi molestie leo suscipit velit posuere feugiat. Aliquam erat volutpat.
+
+			Interdum et malesuada fames ac ante ipsum primis in faucibus. Proin varius elit eget leo gravida, eu mollis justo eleifend. Maecenas sed massa turpis. Proin interdum ex purus, at molestie ante porttitor sed. Cras convallis ante in accumsan aliquet. Sed interdum tristique lobortis. Suspendisse potenti. Nam erat ex, lobortis sed nulla et, accumsan pharetra magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus a hendrerit enim. Nullam ac sagittis ipsum, iaculis egestas nulla.','readonly')?></p>	
+			<input type="checkbox"  id="terminos" required > He leido y acepto la condiciones<br>
+			<?=form_submit('submit', 'Ingresar dinero')?>
+		</div>	
+	</body>
+	</html>

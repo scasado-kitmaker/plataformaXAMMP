@@ -96,12 +96,12 @@
 				<!-- LI DE TEST-->
 				<li>
 					<?php
-					echo anchor(base_url().'index.php/plataforma/aviso_saldo/',' aviso_saldo ');
+					//echo anchor(base_url().'index.php/plataforma/aviso_saldo/',' aviso_saldo ');
 					?>
 				</li>
 				<li>
 					<?php
-					echo anchor(base_url().'index.php/plataforma/logs/',' logs ');
+					//echo anchor(base_url().'index.php/plataforma/logs/',' logs ');
 					?>
 				</li>
 

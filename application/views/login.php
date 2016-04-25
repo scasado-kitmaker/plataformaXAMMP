@@ -7,11 +7,9 @@
 	<link rel="shortcut icon" type="image/ico" href="http://localhost/plataforma/public/assets/images/favicon.ico"/>
 </head>
 <body>
-	
+	<?php include('menu.php');?>
 	<div class="show_entries">
-		<!--Inserta la vista que contiene el menu principal-->
-		<?php include('menu.php');?>
-		<!--Obtiene datos del dispositivo mediante wurfl cloud-->
+		
 		
 		<?=form_open(base_url().'index.php/users/validate/')?>
 		<!--Muestra un toast en caso de que los datos sea incorrectos-->
