@@ -16,7 +16,11 @@ class Users extends CI_Controller{
         //Carga la vista signup
 	public function signup()
 	{
-		$this->load->view('signup');
+		$id_telefono = $this->session->userdata('username');
+		$data['estado'] = $this->plataforma_model->getEstado($id_telefono); 
+		$data['saldo'] = $this->plataforma_model->getSaldo($id_telefono); 
+		$data['usuario'] = $this->plataforma_model->getUserInfo($id_telefono); 
+		$this->load->view('signup',$data);
 	}
         //Valida que los datos introducidos existen en los registros de la base de datos,en caso
         //de no ser así devolvera error, en caso de se correctos se iniciara la sesión del usuario.
@@ -61,7 +65,7 @@ class Users extends CI_Controller{
 	{
 		if($this->session->userdata('is_logged_in'))
 			$this->session->sess_destroy();        
-		redirect(base_url());                  
+		redirect(base_url().'index.php/users/login/');                  
 	}
 	public function register()
 	{
@@ -69,6 +73,7 @@ class Users extends CI_Controller{
 		$password = $this->input->post('password');
 		$user = array(
 			'telefono' => $telefono,
+			'password' =>md5($password),
 			
 			);
 		if($this->users_model->insert('usuario', $user)){

@@ -118,7 +118,9 @@ class plataforma extends CI_Controller {
 	public function panel_control()
 	{
 		$id_telefono = $this->session->userdata('username');
-		$data['usuario'] = $this->plataforma_model->getUserInfo($id_telefono); 
+		$data['usuario'] = $this->plataforma_model->getUserInfo($id_telefono);
+		$data['estado'] = $this->plataforma_model->getEstado($id_telefono); 
+		$data['saldo'] = $this->plataforma_model->getSaldo($id_telefono); 
 		$this->load->view('panel_control.php',$data);
 	}
 

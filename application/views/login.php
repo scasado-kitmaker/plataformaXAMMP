@@ -8,9 +8,7 @@
 </head>
 <body>
 	<?php include('menu.php');?>
-	<div class="show_entries">
-		
-		
+	<div class="show_entries">		
 		<?=form_open(base_url().'index.php/users/validate/')?>
 		<!--Muestra un toast en caso de que los datos sea incorrectos-->
 		<?php echo (isset($error)) ? '<script type="text/javascript">
@@ -37,9 +35,12 @@
 	: '';?>
 	<p>telefono: <?=form_input('username','','placeholder="Usuario"')?></p>   
 	<p>Contraseña: <?=form_password('password','','placeholder="Contraseña"')?></p>
-	
+	<?php
+	echo '<p>¿No tienes cuenta?<a href="http://localhost/plataforma/index.php/users/signup/"> ¡Registrate!</a></p>'
+	?>
 	<?=form_submit('submit', 'Iniciar sesión')?>
 </div>
+
 </div>
 </body>
 </html>

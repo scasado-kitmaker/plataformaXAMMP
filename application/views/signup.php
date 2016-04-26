@@ -11,7 +11,7 @@
 	<?php include('menu.php');?>
 	<div class="show_entries">		
 		<?=form_open(base_url().'index.php/users/register/')?>
-		<p>Name: <?=form_input('telefono','','placeholder="Introduce tu telefono, sera tu nick de usuario."')?></p>
+		<p>Teléfono: <?=form_input('telefono','','placeholder="Introduce tu teléfono, sera tu nick de usuario."')?></p>
 		<p>Password: <?=form_password('password','','placeholder="Introduce tu contraseña"')?></p>
 		<?=form_submit('submit', 'Registrarse')?>
 	</div>

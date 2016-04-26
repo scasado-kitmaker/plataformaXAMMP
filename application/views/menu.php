@@ -30,7 +30,7 @@
 					
 				<?php endforeach; ?>
 				<!-- If there is no info -->
-			
+
 			<?php endif; ?>
 
 			<?php if (!empty($estado)) : ?>
@@ -39,7 +39,7 @@
 					
 				<?php endforeach; ?>
 				<!-- If there is no info -->
-			
+
 			<?php endif; ?>
 
 			<ul>
@@ -80,6 +80,15 @@
 					$varVerde4=' ';
 
 				}
+				if ($actual_link =='http://localhost/plataforma/index.php/plataforma/panel_control/') {
+					$varVerde5='principal';
+				}else{
+					$varVerde5=' ';
+
+				}
+				if ($actual_link =='http://localhost/plataforma/index.php') {
+					$varVerde5='principal';
+				}
 				?>
 				<li>					
 					<?php
@@ -94,7 +103,15 @@
 					{
 						echo anchor(base_url().'index.php/users/login/',' Login ','class="'.$varVerde1.'"');
 					}
+					
 
+					?>
+				</li>
+				<li>
+					<?php
+						if ($this->session->userdata('is_logged_in')){
+							echo anchor(base_url().'index.php/plataforma/panel_control/','Panel de control','class="'.$varVerde5.'"');
+						}
 					?>
 				</li>
 
