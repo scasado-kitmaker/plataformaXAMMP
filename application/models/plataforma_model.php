@@ -52,5 +52,10 @@ class Plataforma_model extends CI_Model
 		$this->db->where('telefono', $id_telefono);
 		return $this->db->get('usuario')->result();
 	}
+	public function getUserInfo($id_telefono)
+	{
+		$this->db->where('telefono', $id_telefono);
+		return $this->db->get('usuario')->result();
+	}
 }
 ?>

@@ -16,5 +16,9 @@ class Users_model extends CI_Model
 	{
 		return $this->db->insert($table , $data);
 	}	
-	
+	public function updateContrasenya($id_telefono, $pass)
+	{
+		$this->db->where('telefono', $id_telefono);
+		return $this->db->update('usuario', $pass);
+	}
 }

@@ -30,8 +30,7 @@
 					
 				<?php endforeach; ?>
 				<!-- If there is no info -->
-			<?php else : ?>
-				<h1>No hay información</h1>
+			
 			<?php endif; ?>
 
 			<?php if (!empty($estado)) : ?>
@@ -40,13 +39,13 @@
 					
 				<?php endforeach; ?>
 				<!-- If there is no info -->
-			<?php else : ?>
-				<h1>No hay información</h1>
+			
 			<?php endif; ?>
 
 			<ul>
 				<?php
 				$actual_link = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['PHP_SELF'];
+				$var1='1';
 				$varVerde1=' ';
 				$varVerde2=' ';
 				$varVerde3=' ';
@@ -86,39 +85,44 @@
 					<?php
 					//echo anchor(base_url().'index.php/plataforma/login/',' Login ');
 
-					if ($this->session->userdata('is_logged_in'))		
-
+					if ($this->session->userdata('is_logged_in')){
 						echo anchor(base_url().'index.php/users/logout/','Hola, '.$this->session->userdata('username'). ' logout ');
-					
-					else		
+						$var1=0;
+
+					}				
+					else
+					{
 						echo anchor(base_url().'index.php/users/login/',' Login ','class="'.$varVerde1.'"');
+					}
 
 					?>
 				</li>
 
 				<!--Si se esta dado de alta en el servicio-->
-				<?php if ($estadoz ==0) : ?>
-					
-					<li>				
+				<?php if ($var1 ==0) : ?>
+					<?php if ($estadoz ==0) : ?>
 
-						<!--Si tiene saldo-->
+						<li>				
 
-						<?php if ($saldoz >0) : ?>
+							<!--Si tiene saldo-->
 
-							<?php echo anchor(base_url().'index.php/plataforma/alta/',' Alta ','class="'.$varVerde2.'"');?>
-							<!--Si NO tiene saldo-->
-						<?php else : ?>
-							<?php echo anchor(base_url().'index.php/plataforma/aviso_saldo/',' Alta ','class="'.$varVerde2.'"');?>
-						<?php endif; ?>		
-						
-					</li>
-					<!--Si NO se esta dado de alta en el servicio-->
-				<?php else : ?>
-					<li>
-						<?php
-						echo anchor(base_url().'index.php/plataforma/baja/',' Baja ','class="'.$varVerde3.'"');
-						?>
-					</li>
+							<?php if ($saldoz >0) : ?>
+
+								<?php echo anchor(base_url().'index.php/plataforma/alta/',' Alta ','class="'.$varVerde2.'"');?>
+								<!--Si NO tiene saldo-->
+							<?php else : ?>
+								<?php echo anchor(base_url().'index.php/plataforma/aviso_saldo/',' Alta ','class="'.$varVerde2.'"');?>
+							<?php endif; ?>		
+
+						</li>
+						<!--Si NO se esta dado de alta en el servicio-->
+					<?php else : ?>
+						<li>
+							<?php
+							echo anchor(base_url().'index.php/plataforma/baja/',' Baja ','class="'.$varVerde3.'"');
+							?>
+						</li>
+					<?php endif; ?>	
 				<?php endif; ?>	
 				<li>
 					<?php

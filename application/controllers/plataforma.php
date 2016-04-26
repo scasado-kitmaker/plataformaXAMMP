@@ -17,7 +17,8 @@ class plataforma extends CI_Controller {
 		$id_telefono = $this->session->userdata('username');
 		$data['estado'] = $this->plataforma_model->getEstado($id_telefono); 
 		$data['saldo'] = $this->plataforma_model->getSaldo($id_telefono); 
-		$this->load->view('menu.php',$data);//Cambiar por login.php
+		$data['usuario'] = $this->plataforma_model->getUserInfo($id_telefono); 
+		$this->load->view('panel_control.php',$data);
 	}
 	public function alta()
 	{
@@ -101,8 +102,11 @@ class plataforma extends CI_Controller {
 	public function update_saldo()
 	{
 		$id_telefono = $this->session->userdata('username');
+		$sum1= $this->input->post('quantity');
+		$sum2= $this->input->post('quantityOriginal');
+		$sumTotal = $sum1+$sum2;
 		$saldo = array(
-			'saldo'     => $this->input->post('quantity'),       
+			'saldo'     => $sumTotal,       
 			);
 
 
@@ -110,6 +114,12 @@ class plataforma extends CI_Controller {
 
 		redirect(base_url());
 
+	}
+	public function panel_control()
+	{
+		$id_telefono = $this->session->userdata('username');
+		$data['usuario'] = $this->plataforma_model->getUserInfo($id_telefono); 
+		$this->load->view('panel_control.php',$data);
 	}
 
 
