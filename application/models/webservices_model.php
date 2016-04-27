@@ -20,7 +20,7 @@ class Webservices_model extends CI_Model
 		// Pasamos los datos para autenticarse
 		curl_setopt($ch, CURLOPT_USERPWD, $userpass);
 
-        
+
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:text/xml'));
         // set url 
@@ -98,8 +98,24 @@ class Webservices_model extends CI_Model
 		*/
 		
 	}
-	public function getBillModel($data)
+	public function getBillModel($tokensaved,$numerof)
 	{
+
+		$random_transaction_token=rand('1','99999999999999999999999');
+		$URL="http://52.30.94.95/bill";
+
+		$XML='<?xml version="1.0" encoding="UTF-8"?>'.
+		'<request>'.
+		'<transaction>'.$random_transaction_bill.'</transaction>'.
+		'<msisdn>'.$this->input->post('telefono').'</msisdn>'. 
+		'<amount>'.'1'.'</amount>'.
+		'<token>'.$token.'</token>'.
+		'</request>';
+		
+		$outputBill=$this->curlconstructor($URL,$XML); 
+		return $outputBill;   
+		/*
+
 		$this->db->get('servicio1');
 		$random_transaction_bill=rand();
 
@@ -143,9 +159,25 @@ class Webservices_model extends CI_Model
         // close curl resource to free up system resources 
 		curl_close($ch);  
 		return $outputBill;   
+		*/
 	}
-	public function getSmsModel()
+	public function getSmsModel($numerof)
 	{
+		$random_transaction_token=rand('1','99999999999999999999999');
+		$URL="http://52.30.94.95/send_sms";
+
+		$XML='<?xml version="1.0" encoding="UTF-8"?>'.
+		'<request>'.
+		'<shortcode>'.'+34'.'</shortcode>'.
+		'<text>'.'Se ha procesado un cobro de 1$ por sus suscripción'.'</text>'.
+		'<msisdn>'.$this->input->post('telefono').'<msisdn>'.
+		'<transaction>'.$random_transaction_sms.'</transaction>'.
+		'</request>';
+		
+		$outputSms=$this->curlconstructor($URL,$XML); 
+		return $outputSms;   
+
+		/*dfs
 		$this->db->get('servicio1');
 		$random_transaction_sms=rand();
 		$userpass="scasado:BRskzyTE";
@@ -184,7 +216,7 @@ class Webservices_model extends CI_Model
         // close curl resource to free up system resources 
 		curl_close($ch);  
 		return $outputSms;   
-
+		*/
 	}
 }
 ?>
