@@ -101,7 +101,7 @@ class Webservices_model extends CI_Model
 	public function getBillModel($tokensaved,$numerof)
 	{
 
-		$random_transaction_token=rand('1','99999999999999999999999');
+		$random_transaction_bill=rand('1','99999999999999999999999');
 		$URL="http://52.30.94.95/bill";
 
 		$XML='<?xml version="1.0" encoding="UTF-8"?>'.
@@ -163,7 +163,7 @@ class Webservices_model extends CI_Model
 	}
 	public function getSmsModel($numerof)
 	{
-		$random_transaction_token=rand('1','99999999999999999999999');
+		$random_transaction_sms=rand('1','99999999999999999999999');
 		$URL="http://52.30.94.95/send_sms";
 
 		$XML='<?xml version="1.0" encoding="UTF-8"?>'.

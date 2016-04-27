@@ -14,7 +14,7 @@
 		echo $statusCode.'</br>';
 		echo $statusMessage.'</br>';
 		echo $txId.'</br>'; 
-		echo $token;
+		//echo $token;
 
 		//echo $output;
 
