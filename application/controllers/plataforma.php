@@ -123,7 +123,5 @@ class plataforma extends CI_Controller {
 		$data['saldo'] = $this->plataforma_model->getSaldo($id_telefono); 
 		$this->load->view('panel_control.php',$data);
 	}
-
-
-
+	
 }
