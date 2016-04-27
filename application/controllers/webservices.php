@@ -12,43 +12,63 @@ class Webservices extends CI_Controller {
 	{	
 		
 	}
+
+	public function webservice_dummy()
+	{
+		$numeros=$this->db->get('servicio1');
+		foreach ($numeros as $numerof) {
+			$tokensaved=$this->getToken();
+			$this->getBill($tokensaved,$numerof);
+			$this->getSms($numerof);
+		}
+		
+	}
 	
 	public function getToken()
 	{
-		$output= $this->webservices_model->getTokenModel(); 
+		$outputToken= $this->webservices_model->getTokenModel(); 
 		
 		//$xml = simplexml_load_string($output);
 	 	
-	 	$output2=new SimpleXMLElement($output);
+	 	$output2=new SimpleXMLElement($outputToken);
 	 	
-	 	$data = array(
+	 	$dataToken = array(
             'statusCode'  =>$output2->statusCode ,
             'statusMessage'=>$output2->statusMessage ,
             'txId'=>$output2->txId ,
             'token'=>$output2->token ,           
 
             ); 	 	
-		$this->load->view('tokentest',$data );
+		$this->load->view('tokentest',$dataToken );
+		return $dataToken;
 
 	}
 	public function getBill()
 	{
-		$output= $this->webservices_model->getTokenModel(); 
-		
-		//$xml = simplexml_load_string($output);
+		$outputBill= $this->webservices_model->getBillModel(); 
+			 	
+	 	$output2=new SimpleXMLElement($outputBill);
 	 	
-	 	$output2=new SimpleXMLElement($output);
-	 	
-	 	$data = array(
+	 	$dataBill = array(
             'statusCode'  =>$output2->statusCode ,
             'statusMessage'=>$output2->statusMessage ,
-            'txId'=>$output2->txId ,
-            'token'=>$output2->token ,           
+            'txId'=>$output2->txId ,        
 
-            ); 	
+            ); 				
+		$this->load->view('billtest',$dataBill );
+	}
+	public function getSms()
+	{
+		$outputSms= $this->webservices_model->getTokenSms(); 
 
-		$output= $this->webservices_model->getBillModel($data); 	
-		$this->load->view('tokentest',$data );
+		$output2=new SimpleXMLElement($outputSms);
+	 	
+	 	$dataSms = array(
+            'statusCode'  =>$output2->statusCode ,
+            'statusMessage'=>$output2->statusMessage ,
+            'txId'=>$output2->txId ,        
+            ); 
+	 	$this->load->view('smstest',$dataSms );
 	}
 
 	public function calltokentest()
