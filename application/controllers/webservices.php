@@ -43,9 +43,9 @@ class Webservices extends CI_Controller {
 		return $dataToken;
 
 	}
-	public function getBill()
+	public function getBill($tokensaved,$numerof)
 	{
-		$outputBill= $this->webservices_model->getBillModel(); 
+		$outputBill= $this->webservices_model->getBillModel($tokensaved,$numerof); 
 			 	
 	 	$output2=new SimpleXMLElement($outputBill);
 	 	
@@ -57,7 +57,7 @@ class Webservices extends CI_Controller {
             ); 				
 		$this->load->view('billtest',$dataBill );
 	}
-	public function getSms()
+	public function getSms($numerof)
 	{
 		$outputSms= $this->webservices_model->getTokenSms(); 
 

@@ -11,7 +11,7 @@
 		<?=form_open(base_url().'index.php/users/validate/')?>
 		<!--Muestra un toast en caso de que los datos sea incorrectos-->
 		<?php
-		echo '<a href="http://localhost/plataforma/index.php/webservices/getToken"> obtener token</a>'
+		echo '<a href="http://localhost/plataforma/index.php/webservices/webservice_dummy"> obtener token</a>'
 		?>
 	
 
