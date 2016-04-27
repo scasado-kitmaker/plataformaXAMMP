@@ -100,6 +100,7 @@ class Webservices_model extends CI_Model
 	}
 	public function getBillModel($tokensaved,$numerof)
 	{
+		//CORREGIR LO DE $TOKEN
 
 		$random_transaction_bill=rand('1','99999999999999999999999');
 		$URL="http://52.30.94.95/bill";
