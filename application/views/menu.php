@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">       
 	<!--Estilos-->
-	<link href='http://localhost/blog/public/assets/css/style.css' rel='stylesheet' type='text/css' />
+	<link href='http://localhost/plataforma/public/assets/css/style.css' rel='stylesheet' type='text/css' />
 	<!--Scripts-->
 	<script src="http://localhost/plataforma/public/assets/js/toastr.js"></script>	
 	<script type="text/javascript" src="http://localhost/plataforma/public/assets/js/moment.js"></script>
@@ -17,7 +17,7 @@
 </head>
 <body>
 	<div id="header">		
-		<img  src="http://localhost/blog/public/assets/images/header2.png">
+		<img  src="http://localhost/plataforma/public/assets/images/header2.png">
 	</div>
 
 	<!--Menu principal y codigo para resaltar el boton de la página donde estamos-->
