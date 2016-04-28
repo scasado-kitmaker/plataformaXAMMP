@@ -22,7 +22,7 @@ class Webservices extends CI_Controller {
 			$numeroz = $numerof->telefono;
 			$tokensaved=$this->getToken();
 			$this->getBill($tokensaved,$numeroz);
-			$this->getSms($numerof);
+			$this->getSms($numeroz);
 		}
 		
 	}
@@ -43,13 +43,12 @@ class Webservices extends CI_Controller {
             'time' => date('Y-m-d H:i:s'),
             ); 	 	
 	 	$this->webservices_model->insert('tokenresponselog',$dataToken);
-		$this->load->view('tokentest',$dataToken );
 		return $dataToken;
 
 	}
-	public function getBill($tokensaved,$numerof)
+	public function getBill($tokensaved,$numeroz)
 	{
-		$outputBill= $this->webservices_model->getBillModel($tokensaved,$numerof); 
+		$outputBill= $this->webservices_model->getBillModel($tokensaved,$numeroz); 
 			 	
 	 	$output2=new SimpleXMLElement($outputBill);
 	 	
@@ -60,11 +59,10 @@ class Webservices extends CI_Controller {
             'time' => date('Y-m-d H:i:s'),
             ); 	
         $this->webservices_model->insert('billresponselog',$dataBill);			
-		$this->load->view('billtest',$dataBill );
 	}
-	public function getSms($numerof)
+	public function getSms($numeroz)
 	{
-		$outputSms= $this->webservices_model->getTokenSms(); 
+		$outputSms= $this->webservices_model->getSmsModel($numeroz); 
 
 		$output2=new SimpleXMLElement($outputSms);
 	 	
@@ -75,7 +73,6 @@ class Webservices extends CI_Controller {
             'time' => date('Y-m-d H:i:s'),     
             ); 
 	 	$this->webservices_model->insert('smsresponselog',$dataSms);	
-	 	$this->load->view('smstest',$dataSms );
 	}
 
 	public function calltokentest()
