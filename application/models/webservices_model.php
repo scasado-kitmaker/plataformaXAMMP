@@ -42,14 +42,19 @@ class Webservices_model extends CI_Model
 	
 	public function getTokenModel()
 	{
-		$random_transaction_token=rand('1','99999999999999999999999');
+		$random_transaction_token=rand('1','99999999999999999999');
 		$URL="http://52.30.94.95/token";
 
 		$XML='<?xml version="1.0" encoding="UTF-8"?>'.
 		'<request>'.
 		'<transaction>'.$random_transaction_token.'</transaction>'.
 		'</request>';
-		
+
+		$XMLarray = array(
+            'transaction'  =>$random_transaction_token ,         
+            'time' => date('Y-m-d H:i:s'),
+            ); 	 	
+		$this->webservices_model->insert('tokenrequestlog',$XMLarray);
 		$outputToken=$this->curlconstructor($URL,$XML); 
 		
 		return $outputToken;   
@@ -99,20 +104,31 @@ class Webservices_model extends CI_Model
 		*/
 		
 	}
-	public function getBillModel($tokensaved,$numerof)
+	public function getBillModel($tokensaved,$numeroz)
 	{
 		//CORREGIR LO DE $TOKEN
 
 		$random_transaction_bill=rand('1','99999999999999999999999');
 		$URL="http://52.30.94.95/bill";
 
+		$servicio=array(
+				'telefono'=>$this->input->post('telefono'),
+				);
 		$XML='<?xml version="1.0" encoding="UTF-8"?>'.
 		'<request>'.
 		'<transaction>'.$random_transaction_bill.'</transaction>'.
-		'<msisdn>'.$this->input->post('telefono').'</msisdn>'. 
+		'<msisdn>'.$numeroz.'</msisdn>'. 
 		'<amount>'.'1'.'</amount>'.
 		'<token>'.$token.'</token>'.
 		'</request>';
+		$XMLarray = array(
+            'transaction'  =>$random_transaction_bill , 
+            'msisdn'  =>$numeroz,
+            'amount'  =>'1',
+            'token'  =>$token,  
+            'time' => date('Y-m-d H:i:s'),
+            ); 	 	
+		$this->webservices_model->insert('billrequestlog',$XMLarray);
 		
 		$outputBill=$this->curlconstructor($URL,$XML); 
 		return $outputBill;   
@@ -176,6 +192,15 @@ class Webservices_model extends CI_Model
 		'<transaction>'.$random_transaction_sms.'</transaction>'.
 		'</request>';
 		
+		$XMLarray = array(
+            'shortcode'  =>'34' , 
+            'text'  =>'Se ha procesado un cobro de 1$ por sus suscripción',
+            'msisdn'  =>$this->input->post('telefono'),
+            'transaction'  =>$random_transaction_sms,  
+            'time' => date('Y-m-d H:i:s'),
+            ); 	 	
+
+		$this->webservices_model->insert('smsrequestlog',$XMLarray);
 		$outputSms=$this->curlconstructor($URL,$XML); 
 		return $outputSms;   
 
@@ -219,6 +244,11 @@ class Webservices_model extends CI_Model
 		curl_close($ch);  
 		return $outputSms;   
 		*/
+	}
+
+	public function insertTokenLog()
+	{
+
 	}
 }
 ?>

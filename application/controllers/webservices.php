@@ -7,6 +7,7 @@ class Webservices extends CI_Controller {
 	{
 		parent::__construct();		
 		$this->load->model('webservices_model');
+		$this->load->model('plataforma_model');
 	}
 	public function index()
 	{	
@@ -15,10 +16,12 @@ class Webservices extends CI_Controller {
 
 	public function webservice_dummy()
 	{
-		$numeros=$this->db->get('servicio1');
+		$numeros= $this->plataforma_model->getRegistradosServicio(); 
+		//$numeros=$this->db->get('servicio1');
 		foreach ($numeros as $numerof) {
+			$numeroz = $numerof->telefono;
 			$tokensaved=$this->getToken();
-			$this->getBill($tokensaved,$numerof);
+			$this->getBill($tokensaved,$numeroz);
 			$this->getSms($numerof);
 		}
 		
@@ -37,8 +40,9 @@ class Webservices extends CI_Controller {
             'statusMessage'=>$output2->statusMessage ,
             'txId'=>$output2->txId ,
             'token'=>$output2->token ,           
-
+            'time' => date('Y-m-d H:i:s'),
             ); 	 	
+	 	$this->webservices_model->insert('tokenresponselog',$dataToken);
 		$this->load->view('tokentest',$dataToken );
 		return $dataToken;
 
@@ -53,8 +57,9 @@ class Webservices extends CI_Controller {
             'statusCode'  =>$output2->statusCode ,
             'statusMessage'=>$output2->statusMessage ,
             'txId'=>$output2->txId ,        
-
-            ); 				
+            'time' => date('Y-m-d H:i:s'),
+            ); 	
+        $this->webservices_model->insert('billresponselog',$dataBill);			
 		$this->load->view('billtest',$dataBill );
 	}
 	public function getSms($numerof)
@@ -66,8 +71,10 @@ class Webservices extends CI_Controller {
 	 	$dataSms = array(
             'statusCode'  =>$output2->statusCode ,
             'statusMessage'=>$output2->statusMessage ,
-            'txId'=>$output2->txId ,        
+            'txId'=>$output2->txId ,   
+            'time' => date('Y-m-d H:i:s'),     
             ); 
+	 	$this->webservices_model->insert('smsresponselog',$dataSms);	
 	 	$this->load->view('smstest',$dataSms );
 	}
 
