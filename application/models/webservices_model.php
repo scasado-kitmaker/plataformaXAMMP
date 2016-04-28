@@ -51,6 +51,7 @@ class Webservices_model extends CI_Model
 		'</request>';
 		
 		$outputToken=$this->curlconstructor($URL,$XML); 
+		
 		return $outputToken;   
 
 		//borrar a partir del comentario
