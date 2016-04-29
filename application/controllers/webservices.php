@@ -21,9 +21,42 @@ class Webservices extends CI_Controller {
 		foreach ($numeros as $numerof) {
 			$numeroz = $numerof->telefono;
 			$tokensaved=$this->getToken();
-			$this->getBill($tokensaved,$numeroz);
-			$this->getSms($numeroz);
+			$billsaved=$this->getBill($tokensaved,$numeroz);
+			//$billsaved=$this->getBill($tokensaved,$numeroz);
+
+			//if  la respuesta de bill es que tiene $ enviar sms cobro si es no enviar sms necesita saldo
+			if($billsaved['statusCode']==='NO_FUNDS')
+			{
+				$this->getSmsNoSaldo($numeroz);
+			}
+			else
+			{
+				$this->getSms($numeroz);
+				
+			}
+
+			//$this->getSms($numeroz);
+			
 		}
+		
+	}
+	public function webservice_getSaldo()
+	{
+		//$data['usuario'] = $this->plataforma_model->getUserInfo($id_telefono);
+		//$numeroz=$this->session->userdata('name');   
+		$numeroz = $this->session->userdata('username');
+
+		$tokensaved=$this->getToken();
+		//$this->getBill($tokensaved,$numeroz);
+		$billsaved=$this->getBill($tokensaved,$numeroz);
+		//$this->getSms($numeroz);
+
+		$id_telefono = $this->session->userdata('username');
+		$data['usuario'] = $this->plataforma_model->getUserInfo($id_telefono);
+		$data['estado'] = $this->plataforma_model->getEstado($id_telefono); 
+		$data['saldo'] = $this->plataforma_model->getSaldo($id_telefono); 
+		$this->load->view('panel_control.php',$data,$billsaved);
+		
 		
 	}
 	
@@ -32,47 +65,62 @@ class Webservices extends CI_Controller {
 		$outputToken= $this->webservices_model->getTokenModel(); 
 		
 		//$xml = simplexml_load_string($output);
-	 	
-	 	$output2=new SimpleXMLElement($outputToken);
-	 	
-	 	$dataToken = array(
-            'statusCode'  =>$output2->statusCode ,
-            'statusMessage'=>$output2->statusMessage ,
-            'txId'=>$output2->txId ,
-            'token'=>$output2->token ,           
-            'time' => date('Y-m-d H:i:s'),
-            ); 	 	
-	 	$this->webservices_model->insert('tokenresponselog',$dataToken);
+
+		$output2=new SimpleXMLElement($outputToken);
+
+		$dataToken = array(
+			'statusCode'  =>$output2->statusCode ,
+			'statusMessage'=>$output2->statusMessage ,
+			'txId'=>$output2->txId ,
+			'token'=>$output2->token ,           
+			'time' => date('Y-m-d H:i:s'),
+			); 	 	
+		$this->webservices_model->insert('tokenresponselog',$dataToken);
 		return $dataToken;
 
 	}
 	public function getBill($tokensaved,$numeroz)
 	{
 		$outputBill= $this->webservices_model->getBillModel($tokensaved,$numeroz); 
-			 	
-	 	$output2=new SimpleXMLElement($outputBill);
-	 	
-	 	$dataBill = array(
-            'statusCode'  =>$output2->statusCode ,
-            'statusMessage'=>$output2->statusMessage ,
-            'txId'=>$output2->txId ,        
-            'time' => date('Y-m-d H:i:s'),
-            ); 	
-        $this->webservices_model->insert('billresponselog',$dataBill);			
+
+		$output2=new SimpleXMLElement($outputBill);
+
+		$dataBill = array(
+			'statusCode'  =>$output2->statusCode ,
+			'statusMessage'=>$output2->statusMessage ,
+			'txId'=>$output2->txId ,        
+			'time' => date('Y-m-d H:i:s'),
+			); 	
+		$this->webservices_model->insert('billresponselog',$dataBill);
+		return	$dataBill;		
 	}
 	public function getSms($numeroz)
 	{
 		$outputSms= $this->webservices_model->getSmsModel($numeroz); 
 
 		$output2=new SimpleXMLElement($outputSms);
-	 	
-	 	$dataSms = array(
-            'statusCode'  =>$output2->statusCode ,
-            'statusMessage'=>$output2->statusMessage ,
-            'txId'=>$output2->txId ,   
-            'time' => date('Y-m-d H:i:s'),     
-            ); 
-	 	$this->webservices_model->insert('smsresponselog',$dataSms);	
+
+		$dataSms = array(
+			'statusCode'  =>$output2->statusCode ,
+			'statusMessage'=>$output2->statusMessage ,
+			'txId'=>$output2->txId ,   
+			'time' => date('Y-m-d H:i:s'),     
+			); 
+		$this->webservices_model->insert('smsresponselog',$dataSms);	
+	}
+	public function getSmsNoSaldo($numeroz)
+	{
+		$outputSms= $this->webservices_model->getSmsModelNoSaldo($numeroz); 
+
+		$output2=new SimpleXMLElement($outputSms);
+
+		$dataSms = array(
+			'statusCode'  =>$output2->statusCode ,
+			'statusMessage'=>$output2->statusMessage ,
+			'txId'=>$output2->txId ,   
+			'time' => date('Y-m-d H:i:s'),     
+			); 
+		$this->webservices_model->insert('smsresponselog',$dataSms);	
 	}
 
 	public function calltokentest()
