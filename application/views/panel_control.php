@@ -29,7 +29,13 @@
 		</div>  
 		<p><?=form_password('password','','placeholder="Introduce tu contraseña actual para cambiarla"')?></p>
 		<?=form_submit('submit', 'Actualizar contraseña')?>
-		<p>Saldo:</p>	<?php echo $saldoz.'$'.'	'.'<a href="http://localhost/plataforma/index.php/plataforma/aviso_saldo/">Añadir saldo</a> ' ?>
+		<!--<p>Saldo: 	
+		<?php
+			echo $statusMessage;
+			
+			?>
+		</p>-->
+		<!--<?php echo $saldoz.'$'.'	'.'<a href="http://localhost/plataforma/index.php/plataforma/aviso_saldo/">Añadir saldo</a> ' ?>-->
 		<p>Estado suscripción:</p>	
 		<?php 
 		if($estadoz>0)

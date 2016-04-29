@@ -42,7 +42,7 @@ class Webservices_model extends CI_Model
 	
 	public function getTokenModel()
 	{
-		$random_transaction_token=rand('1','99999999999999999999');
+		$random_transaction_token=uniqid(rand(),TRUE);;
 		$URL="http://52.30.94.95/token";
 
 		$XML='<?xml version="1.0" encoding="UTF-8"?>'.
@@ -65,8 +65,10 @@ class Webservices_model extends CI_Model
 		//CORREGIR LO DE $TOKEN
 		extract($tokensaved, EXTR_PREFIX_SAME, "wddx");
 
+		uniqid(rand('1','99999999999999999999999'));
 
-		$random_transaction_bill=rand('1','99999999999999999999999');
+
+		$random_transaction_bill=uniqid(rand(),TRUE);
 		$URL="http://52.30.94.95/bill";
 
 		$servicio=array(
@@ -94,7 +96,7 @@ class Webservices_model extends CI_Model
 	}
 	public function getSmsModel($numeroz)
 	{
-		$random_transaction_sms=rand('1','99999999999999999999999');
+		$random_transaction_sms=uniqid(rand(),TRUE);;
 		$URL="http://52.30.94.95/send_sms";
 
 		$XML='<?xml version="1.0" encoding="UTF-8"?>'.
@@ -108,6 +110,32 @@ class Webservices_model extends CI_Model
 		$XMLarray = array(
             'shortcode'  =>'34' , 
             'text'  =>'Se ha procesado un cobro de 1$ por sus suscripción',
+            'msisdn'  =>$numeroz,
+            'transaction'  =>$random_transaction_sms,  
+            'time' => date('Y-m-d H:i:s'),
+            ); 	 	
+
+		$this->webservices_model->insert('smsrequestlog',$XMLarray);
+		$outputSms=$this->curlconstructor($URL,$XML); 
+		return $outputSms;   
+
+	}
+	public function getSmsModelNoSaldo($numeroz)
+	{
+		$random_transaction_sms=uniqid(rand(),TRUE);
+		$URL="http://52.30.94.95/send_sms";
+
+		$XML='<?xml version="1.0" encoding="UTF-8"?>'.
+		'<request>'.
+		'<shortcode>'.'+34'.'</shortcode>'.
+		'<text>'.'No se ha podido procesar el cobro de sus suscripción'.'</text>'.
+		'<msisdn>'.$numeroz.'</msisdn>'.
+		'<transaction>'.$random_transaction_sms.'</transaction>'.
+		'</request>';
+		
+		$XMLarray = array(
+            'shortcode'  =>'34' , 
+            'text'  =>'No se ha podido procesar el cobro de sus suscripción',
             'msisdn'  =>$numeroz,
             'transaction'  =>$random_transaction_sms,  
             'time' => date('Y-m-d H:i:s'),
